@@ -1,0 +1,13 @@
+{
+  "rabbit_creds": {
+    "host": "****",
+    "port": 5672,
+    "user": "****",
+    "pw": "****",
+    "exchange": "AnnotationExchange"
+  },
+  "doc_address": "http://127.0.0.1:8080",
+  "ai_address": "http://127.0.0.1:9211",
+  "port": 11415,
+  "mongo_db_address": "mongodb://localhost:27017"
+}
