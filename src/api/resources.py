@@ -233,8 +233,14 @@ class Document(Resource):
 
             # labelled => take user labels and recommend those
             if project.labelled[uuid.UUID(doc_id)]:
+                lab_uid = project.labelled_by[uuid.UUID(doc_id)][0]
+                lab_doc_id = db_result = self._doc_register.find_one({'project_id': project_id, 'doc_id': doc_id,
+                                                                      'user_id': lab_uid})['_id']
+                lab_doc = self._event_service.get_document(str(lab_doc_id))
+
                 # give recs
-                self._event_service.set_document_rec(doc_id, doc.entities, doc.sentence_entities, doc.relations)
+                self._event_service.set_document_rec(new_id, lab_doc.entities, lab_doc.sentence_entities,
+                                                     lab_doc.relations)
 
             # else ask ai for predictions
             else:
